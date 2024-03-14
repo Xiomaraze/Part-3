@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -83,5 +84,9 @@ public class Villager : MonoBehaviour
     public virtual void Attack()
     {
         animator.SetTrigger("Attack");
+    }
+    public virtual Enum CanOpen()
+    {
+        return Chest.ChestType.villager;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,5 +21,10 @@ public class Archer : Villager
         destination = transform.position;
         base.Attack();
         Instantiate(arrow, spawn);
+    }
+
+    public override Enum CanOpen()
+    {
+        return Chest.ChestType.archer;
     }
 }

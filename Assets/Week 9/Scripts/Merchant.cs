@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,5 +11,9 @@ public class Merchant : Villager
         rb = GetComponent<Rigidbody2D>();
         destination = transform.position;
         animator = GetComponent<Animator>();
+    }
+    public override Enum CanOpen()
+    {
+        return Chest.ChestType.merchant;
     }
 }
