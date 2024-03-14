@@ -7,7 +7,7 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     public Animator animator;
-    public enum ChestType {villager, merchant, archer};
+    public enum ChestType {villager, merchant, archer, thief};
     public ChestType type;
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,7 +16,6 @@ public class Chest : MonoBehaviour
         {
             Villager objScript = collision.GetComponent<Villager>();
             ChestType objType = (ChestType)objScript.CanOpen();
-            Debug.Log(objType);
             if (objType == type)
             {
                 animator.SetBool("IsOpened", true);
