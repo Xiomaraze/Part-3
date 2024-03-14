@@ -10,13 +10,9 @@ public class Archer : Villager
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        destination = transform.position;
     }
 
     public override void Attack()

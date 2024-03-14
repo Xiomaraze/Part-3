@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Villager : MonoBehaviour
 {
-    Rigidbody2D rb;
-    Animator animator;
+    protected Rigidbody2D rb;
+    protected Animator animator;
 
     bool clickingOnSelf;
     bool isSelected;
@@ -40,7 +40,7 @@ public class Villager : MonoBehaviour
         clickingOnSelf = false;
     }
 
-    protected virtual void FixedUpdate()
+    void FixedUpdate()
     {
         movement = destination - (Vector2)transform.position;
 
@@ -59,7 +59,7 @@ public class Villager : MonoBehaviour
         {
             movement = Vector2.zero;
         }
-
+        
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);
     }
 
