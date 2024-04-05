@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject standardDummy;
     public GameObject healerDummy;
-    public GameObject damageDummy;
+    public GameObject damageDummy; //deprecated
+    public GameObject wimpDummy;
+    public float DPS;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +19,7 @@ public class Spawner : MonoBehaviour
 
     public void DummyDestroyed()
     {
-
+        SpawnNew();
     }
 
     void SpawnNew()
@@ -31,7 +35,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            Instantiate(damageDummy);
+            Instantiate(wimpDummy);
         }
     }
 }

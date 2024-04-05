@@ -5,29 +5,23 @@ using UnityEngine.EventSystems;
 
 public class Standard : MonoBehaviour
 {
-    protected float hp = 50;
+    public float hp = 50;
     protected static float hpMax = 50;
-    protected float reflect = 0;
     protected float hpRegen = 0;
-    bool dead = false;
+    protected bool dead = false;
     bool hit = false;
     Animator anim;
     Rigidbody2D rigBody;
     CapsuleCollider2D capCol;
     public DummyBar curBar;
-    public GameObject player;
-    Player PCscript;
     public GameObject spawner;
-    Spawner spawnScript;
+    protected Spawner spawnScript;
 
-    Coroutine Regen;
     // Start is called before the first frame update
     void Start()
     {
         rigBody = GetComponent<Rigidbody2D>();
         capCol = GetComponent<CapsuleCollider2D>();
-        Regen = StartCoroutine(HealthRegen(hpRegen));
-        PCscript = player.GetComponent<Player>();
         spawnScript = spawner.GetComponent<Spawner>();
     }
 
@@ -42,18 +36,13 @@ public class Standard : MonoBehaviour
         if (dead == true)
         {
             //send message back to spawner to spawn new one
-            spawner.SendMessage("DummyDestroyed");
+            spawnScript.DummyDestroyed();
             //destroy prefab
             Destroy(gameObject);
         }
     }
 
-    protected static void Ouch()
-    {
-        Debug.Log("Damage sucessfully dealt.");
-    }
-
-    private void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -61,13 +50,14 @@ public class Standard : MonoBehaviour
         }
         else
         {
-            Damaged(PCscript.DPS);
+            Damaged(spawnScript.DPS);
             hit = true;
-            Ouch();
+            curBar.Hit(spawnScript.DPS);
+            //Debug.Log(PCscript.DPS);
         }
     }
 
-    private void OnMouseUp()
+    protected virtual void OnMouseUp()
     {
         hit = false;
     }
@@ -85,13 +75,6 @@ public class Standard : MonoBehaviour
         {
             dead = true;
         } // mark dead if hp drops to or bellow 0
-    }
-    IEnumerator HealthRegen(float regen)
-    {
-        while (dead == false) {
-            hp += regen;
-            yield return new WaitForSecondsRealtime(1);
-        }
     }
 
 }

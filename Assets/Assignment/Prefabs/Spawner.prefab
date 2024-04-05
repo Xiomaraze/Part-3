@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2b149feb07ea7468827eac358aff7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standardDummy: {fileID: 1539049158304360708, guid: e3afb607d961f284a8dde043634085f1, type: 3}
+  healerDummy: {fileID: 4188389099952943048, guid: e5b759106ab1ecd4d9f78fc2965182e9, type: 3}
+  damageDummy: {fileID: 2334558754808357081, guid: 86445de3deaac5b49b7a19f0514c2790, type: 3}
+  wimpDummy: {fileID: 3697803781805388917, guid: 4c77e6fe893f0714cb9605e6fbefa0c9, type: 3}
+  DPS: 10

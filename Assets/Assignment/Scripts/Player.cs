@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float playerHealth;
-    float playerMaxHealth;
+//    float playerHealth = 50;
+//    static float playerMaxHealth = 50;
     public float DPS;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    SpriteRenderer sprite;
+    public Color origColour;
+    public Color injured;
+    public bool hurt = false;
 
-    void TakeDmg(float dmg)
+    private void Start()
     {
-        playerHealth -= dmg;
-        if (playerHealth < 0)
+        sprite = GetComponent<SpriteRenderer>();
+        if (sprite != null)
         {
-            //game over here
+            sprite.color = origColour;
         }
     }
 
-    void Heal()
+    private void Update()
     {
-        playerHealth = playerMaxHealth;
+        if ((sprite != null) && (hurt == true))
+        {
+            sprite.color = injured;
+        }
+        else
+        {
+            sprite.color = origColour;
+        }
     }
 }
